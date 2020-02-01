@@ -54,7 +54,8 @@ public class ServerLimitsConfigTestCase {
                     .body(body.toString())
                     .post("/test")
                     .then().statusCode(413);
-        } catch (RuntimeException e) {
+        } catch (Throwable t) {
+            System.out.println("TTThrow = " + t.getClass());
             // Writing when the connection has been closed can lead to a WSAECONNABORTED
             // on Windows. Ignore since this is the case we are testing.
         }
